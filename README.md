@@ -43,4 +43,8 @@ Download_Youtube is a CLI tool used to download playlists and videos from youtub
 
 # 🌟 Finalization
 
+<<<<<<< HEAD
 Thank you for collaborating with the project!
+=======
+Thank you for collaborating with the project!
+>>>>>>> 5098e1163ad8a399db264f331f4fbcc9ce1097ab
