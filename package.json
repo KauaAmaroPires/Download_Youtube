@@ -1,0 +1,20 @@
+{
+  "name": "download_youtube",
+  "version": "1.0.0",
+  "description": "Uma ferramenta CLI de baixar vídeos e playlists do youtube.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kauã amaro pires",
+  "license": "ISC",
+  "dependencies": {
+    "events": "^3.3.0",
+    "fs": "^0.0.1-security",
+    "puppeteer": "^18.0.5",
+    "util": "^0.12.4",
+    "ytdl-core": "^4.11.2"
+  }
+}
