@@ -49,11 +49,11 @@ class Download {
             let filter;
             let end;
 
-            if (type == '1') {
+            if (type == 'MP4') {
                 end = '.mp4';
                 filter = { filter: format => format.itag === 18 };
             };
-            if (type == '2') {
+            if (type == 'MP3') {
                 end = '.mp3';
                 filter = { filter: "audioonly" };
             };
@@ -109,11 +109,11 @@ class Download {
                 let filter;
                 let end;
 
-                if (type == '1') {
+                if (type == 'MP4') {
                     end = '.mp4';
                     filter = { filter: format => format.itag === 18 };
                 };
-                if (type == '2') {
+                if (type == 'MP3') {
                     end = '.mp3';
                     filter = { filter: "audioonly" };
                 };

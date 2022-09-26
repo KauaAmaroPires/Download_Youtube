@@ -13,9 +13,12 @@ Download_Youtube is a CLI tool used to download playlists and videos from youtub
 
 * Type ```npm install``` in your project folder terminal, and wait for the packages to download.
 
+* type ```npm link``` to use as a global variable.
+
 # ❔ How to use?
 
-* The tool is simple to use. to get started just type ```npm run start``` or ```node .```
+
+* The tool is simple to use. to get started just type ```npm run start``` , ```node .``` or ```ytdownload```
 
 ![prompt](./assets/prompt.png)
 
