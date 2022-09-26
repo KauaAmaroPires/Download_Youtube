@@ -1,46 +1,46 @@
 # Download_Youtube
 
-Download_Youtube e uma ferramenta CLI usada para fazer download de playlists e vídeos do youtube nos formatos  ```MP4``` e ```MP3```.  
+Download_Youtube is a CLI tool used to download playlists and videos from youtube in ```MP4``` and ```MP3``` formats.
 
-* Deixe sua ```star``` para mais pessoas verem o projeto.
-* Comentem sobre como eu poderia melhorar o projeto.
+* Leave your ```star``` for more people to see the project.
+* Comment on how I could improve the project.
 
 ![response](./assets/response.png)
 
-# ✨ Inicio.
+# ✨ Home.
 
-* Tenha o ```NodeJs``` e ```Chrome``` na sua maquina, para funcionar o projeto. 
+* Have ```NodeJs``` and ```Chrome``` on your machine, to run the project.
 
-* Digite ```npm install``` no seu terminal da pasta do projeto, e espere o download das packages.
+* Type ```npm install``` in your project folder terminal, and wait for the packages to download.
 
-# ❔ Como usar?
+# ❔ How to use?
 
-* A ferramenta e simples de usar. para começar basta digitar ```npm run start``` ou ```node .```
+* The tool is simple to use. to get started just type ```npm run start``` or ```node .```
 
 ![prompt](./assets/prompt.png)
 
-* logo após cole o link do vídeo ou playlist do youtube que você quer baixar e confirme.
+* right after paste the link of the video or youtube playlist you want to download and confirm.
 
 ![search](./assets/search.png)
 
-* Escolha o formato de download.
+* Choose download format.
 
 ![choices](./assets/choices.png)
 
-* logo após será iniciado a varredura de playlist (caso seja detectado uma playlist)
+* right after the playlist scan will be started (if a playlist is detected)
 
 ![playlist](./assets/playlist.png)
 
-* quando terminar a varredura, será iniciado o processo de download.
+* when the scan is finished, the download process will start.
 
 ![download](./assets/download.png)
 
-**OBS: Caso tenha algum vídeo com restrição de idade ou bloqueio de região, ele ira dar erro e ignorar esse vídeo e seguir a vida.**
+**NOTE: If you have any video with age restriction or region blocking, it will give an error and ignore this video and go on with life.**
 
-# 🎶 Resultado!
+# 🎶 Result!
 
 ![response](./assets/response.png)
 
-# 🌟 Finalização
+# 🌟 Finalization
 
-Obrigado por colaborar com o projeto!
+Thank you for collaborating with the project!
