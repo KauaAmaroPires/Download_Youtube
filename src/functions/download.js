@@ -1,3 +1,5 @@
+const ffmpeg = require('fluent-ffmpeg');
+const ytdl = require('ytdl-core');
 const delay = require('util').promisify(setTimeout);
 const events = require('events');
 const Events = new events();
@@ -9,6 +11,8 @@ const data = {
     SuccessLength: 0,
     ErrorLength: 0
 };
+
+let end;
 
 Events.on('Downloaded', (data) => {
     if (data.SuccessLength >= data.ListLength) {
@@ -30,7 +34,6 @@ class Download {
         console.log(color('[LOG] - Carregando...', 'blue'));
         console.log('\n\n');
 
-        let ytdl = require('ytdl-core');
         const info = await ytdl.getInfo(url).catch(a => {});
 
         data.ListLength = 1;
@@ -46,31 +49,47 @@ class Download {
                 .replace(/\-\-+/g, '-')
                 .replace(/(^-+|-+$)/, '');
 
-            let filter;
-            let end;
-
             if (type == 'MP4') {
+
                 end = '.mp4';
-                filter = { filter: format => format.itag === 18 };
-            };
-            if (type == 'MP3') {
-                end = '.mp3';
-                filter = { filter: "audioonly" };
+
+                ytdl(url, {
+                    filter: format => format.itag === 18
+                }).pipe(fs.createWriteStream(`${dir}/${name}${end}`)).on('finish', () => {
+                    console.log(color('[DOWNLOADED] ' + name + end, 'magenta'));
+                    data.SuccessLength += 1;
+                    Events.emit('Downloaded', (data));
+                })
+                .on('unpipe', () => {})
+                .on('close', () => {})
+                .on('drain', () => {})
+                .on('error', () => {
+                    console.log(color(`[ERROR] - música: ${name} - ${url}`, 'red'));
+                    data.ErrorLength += 1;
+                    Events.emit('Downloaded', (data));
+                });
+
             };
 
-            ytdl(url, filter).pipe(fs.createWriteStream(`${dir}/${name}${end}`)).on('finish', () => {
-                console.log(color('[DOWNLOADED] ' + name + end, 'magenta'));
-                data.SuccessLength += 1;
-                Events.emit('Downloaded', (data));
-            })
-            .on('unpipe', () => {})
-            .on('close', () => {})
-            .on('drain', () => {})
-            .on('error', () => {
-                console.log(color(`[ERROR] - música: ${name} - ${url}`, 'red'));
-                data.ErrorLength += 1;
-                Events.emit('Downloaded', (data));
-            });
+            if (type == 'MP3') {
+
+                end = '.mp3';
+
+                let stream = ytdl(url, {
+                    quality: 'highestaudio',
+                });
+                
+                ffmpeg(stream).audioBitrate(320).save(`${dir}/${name}${end}`).on('error', () => {
+                    console.log(color(`[ERROR] - música: ${name} - ${url}`, 'red'));
+                    data.ErrorLength += 1;
+                    Events.emit('Downloaded', (data));
+                }).on('end', () => {
+                    console.log(color('[DOWNLOADED] ' + name + end, 'magenta'));
+                    data.SuccessLength += 1;
+                    Events.emit('Downloaded', (data));
+                });
+
+            };
 
         };
 
@@ -89,52 +108,88 @@ class Download {
 
         data.ListLength = list.length;
 
-        for (let i = 0; i < list.length; i++) {
-            let ytdl = require('ytdl-core');
-            const obj = list[i];
-            const info = await ytdl.getInfo(obj.url).catch(a => {});
+        if (type == 'MP4') {
 
-            if (info === 'undefined' || info === undefined) {
-                console.log(color(`[ERROR] - música ${obj.index} - ${obj.url}`, 'red'));
-                data.ListLength -= 1;
-                data.ErrorLength += 1;
-            } else {
-                
-                const name = `${obj.index}-${info.videoDetails.title}`.normalize('NFD')
-                    .replace(/[\u0300-\u036f]/g, '')
-                    .replace(/([^\w]+|\s+)/g, '-')
-                    .replace(/\-\-+/g, '-')
-                    .replace(/(^-+|-+$)/, '');
+            end = '.mp4';
 
-                let filter;
-                let end;
-
-                if (type == 'MP4') {
-                    end = '.mp4';
-                    filter = { filter: format => format.itag === 18 };
-                };
-                if (type == 'MP3') {
-                    end = '.mp3';
-                    filter = { filter: "audioonly" };
-                };
-
-                ytdl(obj.url, filter).pipe(fs.createWriteStream(`${dir}/${name}${end}`)).on('finish', () => {
-                    console.log(color('[DOWNLOADED] ' + name + end, 'magenta'));
-                    data.SuccessLength += 1;
-                    Events.emit('Downloaded', (data));
-                })
-                .on('unpipe', () => {})
-                .on('close', () => {})
-                .on('drain', () => {})
-                .on('error', () => {
-                    console.log(color(`[ERROR] - música: ${name} - ${obj.url}`, 'red'));
+            for (let i = 0; i < list.length; i++) {
+                const obj = list[i];
+                const info = await ytdl.getInfo(obj.url).catch(a => {});
+    
+                if (info === 'undefined' || info === undefined) {
+                    console.log(color(`[ERROR] - música ${obj.index} - ${obj.url}`, 'red'));
+                    data.ListLength -= 1;
                     data.ErrorLength += 1;
-                    Events.emit('Downloaded', (data));
-                });
-
-                await delay(1500);
-
+                } else {
+                    
+                    const name = `${obj.index}-${info.videoDetails.title}`.normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .replace(/([^\w]+|\s+)/g, '-')
+                        .replace(/\-\-+/g, '-')
+                        .replace(/(^-+|-+$)/, '');
+    
+                    ytdl(obj.url, {
+                        filter: format => format.itag === 18
+                    }).pipe(fs.createWriteStream(`${dir}/${name}${end}`)).on('finish', () => {
+                        console.log(color('[DOWNLOADED] ' + name + end, 'magenta'));
+                        data.SuccessLength += 1;
+                        Events.emit('Downloaded', (data));
+                    })
+                    .on('unpipe', () => {})
+                    .on('close', () => {})
+                    .on('drain', () => {})
+                    .on('error', () => {
+                        console.log(color(`[ERROR] - música: ${name} - ${obj.url}`, 'red'));
+                        data.ErrorLength += 1;
+                        Events.emit('Downloaded', (data));
+                    });
+    
+                    await delay(1500);
+    
+                };
             };
+
+        };
+
+        if (type == 'MP3') {
+
+            end = '.mp3';
+
+            for (let i = 0; i < list.length; i++) {
+                const obj = list[i];
+                const info = await ytdl.getInfo(obj.url).catch(a => {});
+    
+                if (info === 'undefined' || info === undefined) {
+                    console.log(color(`[ERROR] - música ${obj.index} - ${obj.url}`, 'red'));
+                    data.ListLength -= 1;
+                    data.ErrorLength += 1;
+                } else {
+                    
+                    const name = `${obj.index}-${info.videoDetails.title}`.normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '')
+                        .replace(/([^\w]+|\s+)/g, '-')
+                        .replace(/\-\-+/g, '-')
+                        .replace(/(^-+|-+$)/, '');
+
+                    let stream = ytdl(obj.url, {
+                        quality: 'highestaudio',
+                    });
+                    
+                    ffmpeg(stream).audioBitrate(320).save(`${dir}/${name}${end}`).on('error', () => {
+                        console.log(color(`[ERROR] - música: ${name} - ${obj.url}`, 'red'));
+                        data.ErrorLength += 1;
+                        Events.emit('Downloaded', (data));
+                    }).on('end', () => {
+                        console.log(color('[DOWNLOADED] ' + name + end, 'magenta'));
+                        data.SuccessLength += 1;
+                        Events.emit('Downloaded', (data));
+                    });
+    
+                    await delay(1500);
+    
+                };
+            };
+
         };
 
     };

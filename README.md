@@ -11,6 +11,8 @@ Download_Youtube is a CLI tool used to download playlists and videos from youtub
 
 * Have ```NodeJs``` and ```Chrome``` on your machine, to run the project.
 
+* To download .MP3 music I need to install [ffmpeg](http://www.ffmpeg.org/). tutorial on how to install: [link](https://www.youtube.com/watch?v=Q267RF1I3GE)
+
 * Type ```npm install``` in your project folder terminal, and wait for the packages to download.
 
 * type ```npm link``` to use as a global variable.
