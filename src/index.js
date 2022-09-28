@@ -59,6 +59,8 @@ inquirer.prompt([
     fs.mkdirSync(dir);
   };
 
+  process.stdin.setEncoding('utf-8').on('data', () => {});
+
   if (validateURL(URL)) {
     await download({ url: URL, type: TYPE, dir: dir });
   } else {

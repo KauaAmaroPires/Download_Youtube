@@ -14,11 +14,12 @@ const data = {
 
 let end;
 
-Events.on('Downloaded', (data) => {
+Events.on('Downloaded', async (data) => {
     if (data.SuccessLength >= data.ListLength) {
         console.log('\n\n');
         console.log(color(`[LOG] - Download Completo! Success: ${data.SuccessLength}, Error: ${data.ErrorLength} encerrando processos...`, 'blue'));
         console.log('\n\n');
+        await delay(1500);
         process.exit();
     };
 });
