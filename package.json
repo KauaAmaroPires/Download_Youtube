@@ -1,19 +1,30 @@
 {
   "name": "download_youtube",
   "version": "1.0.0",
-  "description": "Uma ferramenta CLI de baixar vídeos e playlists do youtube.",
+  "description": "A CLI tool to download youtube videos and playlists.",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KauaAmaroPires/Download_Youtube.git"
   },
   "preferGlobal": true,
   "bin": {
     "ytdownload": "./src/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "playlists",
+    "download",
+    "videos",
+    "youtube-downloader",
+    "download-videos",
+    "ytdl-core",
+    "cli"
+  ],
   "author": "Kauã amaro pires",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "events": "^3.3.0",
     "figlet": "^1.5.2",
