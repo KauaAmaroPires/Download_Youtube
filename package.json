@@ -11,7 +11,7 @@
     "url": "git://github.com/KauaAmaroPires/Download_Youtube.git"
   },
   "publishConfig": {
-    "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "preferGlobal": true,
   "bin": {

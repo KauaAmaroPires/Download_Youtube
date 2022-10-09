@@ -1,33 +1,24 @@
-name: Node.js Package
-
+name: Publish
 on:
   release:
     types: [created]
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 12
-      - run: npm ci
-      - run: npm test
-
-  publish-gpr:
-    needs: build
+  publish:
     runs-on: ubuntu-latest
     permissions:
-      packages: write
       contents: read
+      packages: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
+          node-version: 16
+      - run: npm install
+      - run: npm run build
+      - run: |
+          echo @kauaamaropites:https://npm.pkg.github.com/ > build/.npmrc
+          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> build/.npmrc
       - run: npm publish
+        working-directory: ./build
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
