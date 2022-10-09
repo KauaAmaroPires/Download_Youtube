@@ -7,6 +7,10 @@ Download_Youtube is a CLI tool used to download playlists and videos from youtub
 
 ![response](./assets/response.png)
 
+# 🔷 Install
+
+    npm install @kauaamaropires/ytdl-playlist -g
+
 # ✨ Home.
 
 * Have ```NodeJs``` and ```Chrome``` on your machine, to run the project.
