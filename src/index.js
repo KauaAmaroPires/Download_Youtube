@@ -36,10 +36,10 @@ inquirer.prompt([
     name: 'url',
     message: 'link do vídeo ou da playlist:',
     validate(answer) {
-        if (answer.length < 1) {
-            return 'Digite ou cole o link, essa ação e obrigatória.';
-        };
-        return true;
+      if (answer.length < 1) {
+        return 'Digite ou cole o link, essa ação e obrigatória.';
+      };
+      return true;
     }
   },
   {
@@ -105,13 +105,9 @@ inquirer.prompt([
 
 });
 
-process.on("multipleResolves", (type, promise, reason) => {
-  //console.log(`Vários erros identificados:\n\n` + type, promise, reason);
-});
+process.on("multipleResolves", (type, promise, reason) => {});
 
-process.on("unhandRejection", (reason, promise) => {
-  //console.log(`Erros identificado:\n\n` + reason, promise);
-});
+process.on("unhandRejection", (reason, promise) => {});
 
 process.on("uncaughtException", (error, origin) => {
   console.log(`Erros identificado:\n\n` + error, origin);

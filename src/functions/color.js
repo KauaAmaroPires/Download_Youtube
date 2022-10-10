@@ -1,5 +1,4 @@
 module.exports = (txt, cor) => {
-
   const code = {
     black: 30,
     blue: 34,
@@ -10,7 +9,5 @@ module.exports = (txt, cor) => {
     cian: 96,
     white: 97
   }[cor];
-
   if (code) return "\x1b[" + code + "m" + txt + "\x1b[0m";
-  
 };
