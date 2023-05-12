@@ -10,9 +10,6 @@
     "type": "git",
     "url": "git://github.com/KauaAmaroPires/Download_Youtube.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "preferGlobal": true,
   "bin": {
     "ytdlpl": "./src/index.js"
