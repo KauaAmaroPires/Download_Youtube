@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KauaAmaroPires/Download_Youtube.git"
   },
   "preferGlobal": true,
   "bin": {
