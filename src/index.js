@@ -67,7 +67,7 @@ inquirer.prompt([
 
     let num = 0;
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       args: ['--disable-notifications', '--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
