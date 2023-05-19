@@ -105,8 +105,6 @@ inquirer.prompt([
 
 });
 
-process.on("multipleResolves", (type, promise, reason) => {});
-
 process.on("unhandRejection", (reason, promise) => {});
 
 process.on("uncaughtException", (error, origin) => {
