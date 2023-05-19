@@ -1,33 +1,16 @@
 #!/usr/bin/env node
 
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const { validateURL } = require('ytdl-core');
+const ytpl = require('ytpl');
 const figlet = require('figlet');
 const inquirer = require('inquirer');
 const color = require('./functions/color');
 const Download = require('./functions/download');
 const { download, playlist } = new Download();
-const list = [];
-const dir = `./músicas`;
-
-async function autoScroll(page) {
-  await page.evaluate(async () => {
-    await new Promise((resolve, reject) => {
-      let totalHeight = 0;
-      const distance = 100;
-      const timer = setInterval(() => {
-        var scrollHeight = document.documentElement.scrollHeight;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-        if (totalHeight >= scrollHeight) {
-          clearInterval(timer);
-          resolve();
-        }
-      }, 300);
-    });
-  });
-};
+let list = [];
+let dir = `./músicas`;
+let format;
 
 console.log(color(figlet.textSync('Download_Youtube'), 'cian'));
 
@@ -39,6 +22,10 @@ inquirer.prompt([
       if (answer.length < 1) {
         return 'Digite ou cole o link, essa ação e obrigatória.';
       };
+      let pass = false
+      if (validateURL(answer.trim())) pass = true;
+      if (ytpl.validateID(answer.trim())) pass = true;
+      if (!pass) return 'Digite ou cole o link, essa ação e obrigatória.';
       return true;
     }
   },
@@ -53,54 +40,40 @@ inquirer.prompt([
   const URL = data.url;
   const TYPE = data.format;
 
-  //console.clear();
-
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   };
-
-  process.stdin.setEncoding('utf-8').on('data', () => {});
 
   if (validateURL(URL)) {
     await download({ url: URL, type: TYPE, dir: dir });
   } else {
 
-    let num = 0;
-    const browser = await puppeteer.launch({
-      headless: 'new',
-      args: ['--disable-notifications', '--no-sandbox', '--disable-setuid-sandbox'],
-    });
-    const page = await browser.newPage();
-    await page.setViewport({
-      width: 1366,
-      height: 768,
-    });
-    
-    page.on("response", async (response) => {
-      let url = response.url();
-      if (response.request().resourceType() === "image" && url.includes('https://i.ytimg.com/vi/') && !url.includes('EXCNACEL')) {
-        num += 1;
-        url = `https://www.youtube.com/watch?v=${url.split('https://').join('').split('/')[2]}`;
-        console.log(num, color(url, 'white'));
-        list.push({
-          index: num,
-          url: url
-        });
-      };
-    });
-
-    await page.goto(URL, {
-      timeout: 0,
-      waitUntil: "networkidle0",
-    }).catch(() => {
+    list = await ytpl(URL, { pages: 1 }).catch(e => {
       console.log(color('[ERROR] - Ocorreu um erro! verifique o link e tente novamente.', 'red'));
       process.exit();
     });
 
-    await autoScroll(page);
-    await browser.close();
+    if (list.estimatedItemCount > 100) {
+      list = await ytpl(URL, { pages: Math.ceil(list.estimatedItemCount / 100, 1) });
+    };
+
+    dir = dir + '/' + list.title.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/([^\w]+|\s+)/g, '-').replace(/\-\-+/g, '-').replace(/(^-+|-+$)/, '');
+
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    } else {
+      dir = `./músicas`;
+    };
+
+    for (let i = 0; i < list.items.length; i++) {
+      const url = list.items[i].shortUrl;
+      const num = i + 1;
+      list.items[i].index = num;
+      console.log(num, color(url, 'white'));
+    };
+
     await playlist({ list: list, type: TYPE, dir: dir });
-    
+
   };
 
 });
