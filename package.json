@@ -1,6 +1,6 @@
 {
   "name": "@kauaamaropires/ytdl-playlist",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A CLI tool to download youtube videos and playlists.",
   "main": "src/index.js",
   "scripts": {
