@@ -29,13 +29,13 @@
   "author": "Kauã amaro pires",
   "license": "MIT",
   "dependencies": {
+    "@distube/ytdl-core": "^4.13.5",
+    "@distube/ytpl": "^1.2.1",
     "events": "^3.3.0",
     "figlet": "^1.5.2",
     "fluent-ffmpeg": "^2.1.2",
     "fs": "^0.0.1-security",
     "inquirer": "^8.0.0",
-    "util": "^0.12.4",
-    "ytdl-core": "^4.11.4",
-    "ytpl": "^2.3.0"
+    "util": "^0.12.4"
   }
 }

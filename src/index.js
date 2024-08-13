@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const { validateURL } = require('ytdl-core');
-const ytpl = require('ytpl');
+const { validateURL } = require("@distube/ytdl-core");
+const ytpl = require('@distube/ytpl');
 const figlet = require('figlet');
 const inquirer = require('inquirer');
 const color = require('./functions/color');
@@ -10,7 +10,6 @@ const Download = require('./functions/download');
 const { download, playlist } = new Download();
 let list = [];
 let dir = `./músicas`;
-let format;
 
 console.log(color(figlet.textSync('Download_Youtube'), 'cian'));
 
@@ -34,18 +33,40 @@ inquirer.prompt([
     message: 'escolha o formato de download:',
     name: 'format',
     choices: ['MP4', 'MP3']
+  },
+  {
+    type: 'list',
+    message: 'escolha qualidade:',
+    name: 'quality',
+    choices: ['Baixo - low', 'Medio - medium', 'Alto - high']
   }
 ]).then(async (data) => {
 
+  const qualityTypes = {
+    'Baixo - low' : {
+      type: 'low',
+      itags: [18, 133, 160]
+    },
+    'Medio - medium' : {
+      type: 'medium',
+      itags: [135, 136, 298]
+    },
+    'Alto - high' : {
+      type: 'high',
+      itags: [137, 299]
+    }
+  };
+
   const URL = data.url;
   const TYPE = data.format;
+  const QUALITY = qualityTypes[data.quality];
 
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   };
 
   if (validateURL(URL)) {
-    await download({ url: URL, type: TYPE, dir: dir });
+    await download({ url: URL, type: TYPE, quality: QUALITY, dir: dir });
   } else {
 
     list = await ytpl(URL, { pages: 1 }).catch(e => {
@@ -72,13 +93,13 @@ inquirer.prompt([
       console.log(num, color(url, 'white'));
     };
 
-    await playlist({ list: list, type: TYPE, dir: dir });
+    await playlist({ list: list, type: TYPE, quality: QUALITY, dir: dir });
 
   };
 
 });
 
-process.on("unhandRejection", (reason, promise) => {});
+/*process.on("unhandRejection", (reason, promise) => {});
 
 process.on("uncaughtException", (error, origin) => {
   console.log(`Erros identificado:\n\n` + error, origin);
@@ -86,4 +107,4 @@ process.on("uncaughtException", (error, origin) => {
 
 process.on("uncaughtExceptionMonitor", (error, origin) => {
   console.log(`Erros identificado:\n\n` + error, origin);
-});
+});*/
