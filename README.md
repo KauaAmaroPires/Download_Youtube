@@ -1,6 +1,14 @@
-# Download_Youtube
+<div align="center">
+	<p>
+		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="Icon.png" width="546" alt="Download_Youtube" /></a>
+	</p>
+	<p>
+		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="https://img.shields.io/npm/v/@kauaamaropires/ytdl-playlist.svg?maxAge=3600" alt="npm version" /></a>
+		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="https://img.shields.io/npm/dt/@kauaamaropires/ytdl-playlist.svg?maxAge=3600" alt="npm downloads" /></a>
+	</p>
+</div>
 
-Download_Youtube is a CLI tool used to download playlists and videos from youtube in ```MP4``` and ```MP3``` formats.
+# Download_Youtube is a CLI tool used to download playlists and videos from youtube in ```MP4``` and ```MP3``` formats.
 
 * Leave your ```star``` for more people to see the project.
 * Comment on how I could improve the project.
@@ -13,7 +21,7 @@ Download_Youtube is a CLI tool used to download playlists and videos from youtub
 
 # ✨ Home.
 
-* Have ```NodeJs``` and ```Chrome``` on your machine, to run the project.
+* Have ```NodeJs``` on your machine, to run the project.
 
 * To download .MP3 music I need to install [ffmpeg](http://www.ffmpeg.org/). tutorial on how to install: [link](https://www.youtube.com/watch?v=Q267RF1I3GE)
 
