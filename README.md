@@ -1,6 +1,6 @@
 <div align="center">
 	<p>
-		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/master/assets/Icon.png" width="546" alt="Download_Youtube" /></a>
+		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/Icon.png" width="546" alt="Download_Youtube" /></a>
 	</p>
 	<p>
 		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="https://img.shields.io/npm/v/@kauaamaropires/ytdl-playlist.svg?maxAge=3600" alt="npm version" /></a>
