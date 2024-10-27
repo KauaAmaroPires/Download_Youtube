@@ -1,6 +1,6 @@
 <div align="center">
 	<p>
-		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="https://github.com/KauaAmaroPires/Download_Youtube/blob/master/assets/Icon.png" width="546" alt="Download_Youtube" /></a>
+		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/master/assets/Icon.png" width="546" alt="Download_Youtube" /></a>
 	</p>
 	<p>
 		<a href="https://www.npmjs.com/package/@kauaamaropires/ytdl-playlist"><img src="https://img.shields.io/npm/v/@kauaamaropires/ytdl-playlist.svg?maxAge=3600" alt="npm version" /></a>
@@ -13,7 +13,7 @@
 * Leave your ```star``` for more people to see the project.
 * Comment on how I could improve the project.
 
-![response](./assets/response.png)
+![response](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/response.png)
 
 # 🔷 Install
 
@@ -30,29 +30,29 @@
 
 * The tool is simple to use. to get started just type ```ytdlpl```
 
-![prompt](./assets/prompt.png)
+![prompt](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/prompt.png)
 
 * right after paste the link of the video or youtube playlist you want to download and confirm.
 
-![search](./assets/search.png)
+![search](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/search.png)
 
 * Choose download format.
 
-![choices](./assets/choices.png)
+![choices](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/choices.png)
 
 * right after the playlist scan will be started (if a playlist is detected)
 
-![playlist](./assets/playlist.png)
+![playlist](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/playlist.png)
 
 * when the scan is finished, the download process will start.
 
-![download](./assets/download.png)
+![download](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/download.png)
 
 **NOTE: If you have any video with age restriction or region blocking, it will give an error and ignore this video and go on with life.**
 
 # 🎶 Result!
 
-![response](./assets/response.png)
+![response](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/response.png)
 
 # 🌟 Finalization
 
