@@ -1,15 +1,11 @@
 {
   "name": "@kauaamaropires/ytdl-playlist",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "A CLI tool to download youtube videos and playlists.",
   "main": "src/index.js",
   "scripts": {
     "release": "standard-version && git push --follow-tags && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/KauaAmaroPires/Download_Youtube.git"
   },
   "publishConfig": {
     "@KauaAmaroPires:registry": "https://npm.pkg.github.com"
