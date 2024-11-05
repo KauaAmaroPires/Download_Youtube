@@ -99,7 +99,7 @@ inquirer.prompt([
 
 });
 
-/*process.on("unhandRejection", (reason, promise) => {});
+process.on("unhandRejection", (reason, promise) => {});
 
 process.on("uncaughtException", (error, origin) => {
   console.log(`Erros identificado:\n\n` + error, origin);
@@ -107,4 +107,4 @@ process.on("uncaughtException", (error, origin) => {
 
 process.on("uncaughtExceptionMonitor", (error, origin) => {
   console.log(`Erros identificado:\n\n` + error, origin);
-});*/
+});
