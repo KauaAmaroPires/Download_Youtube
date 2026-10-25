@@ -1,22 +1,27 @@
 {
   "name": "@kauaamaropires/ytdl-playlist",
   "version": "3.1.3",
-  "description": "A CLI tool to download youtube videos and playlists.",
+  "description": "CLI and Node.js library for downloading YouTube videos and playlists as MP3 or MP4.",
   "main": "src/index.js",
+  "exports": "./src/index.js",
   "scripts": {
-    "release": "standard-version && git push --follow-tags && npm publish",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test",
+    "test:syntax": "node --check src/cli.js && node --check src/index.js && node --check scripts/release.js",
+    "prepack": "npm test && npm run test:syntax",
+    "release": "node scripts/release.js",
+    "release:patch": "node scripts/release.js patch",
+    "release:minor": "node scripts/release.js minor",
+    "release:major": "node scripts/release.js major"
   },
   "publishConfig": {
-    "@KauaAmaroPires:registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/KauaAmaroPires/Download_Youtube.git"
+    "url": "git+https://github.com/KauaAmaroPires/Download_Youtube.git"
   },
-  "preferGlobal": true,
   "bin": {
-    "ytdlpl": "./src/index.js"
+    "ytdlpl": "./src/cli.js"
   },
   "keywords": [
     "playlists",
@@ -27,19 +32,21 @@
     "ytdl-core",
     "cli"
   ],
-  "author": "Kauã amaro pires",
+  "author": "Kauã Amaro Pires",
   "license": "MIT",
-  "dependencies": {
-    "@distube/ytdl-core": "^4.13.5",
-    "@distube/ytpl": "^1.2.1",
-    "events": "^3.3.0",
-    "figlet": "^1.5.2",
-    "fluent-ffmpeg": "^2.1.2",
-    "fs": "^0.0.1-security",
-    "inquirer": "^8.0.0",
-    "util": "^0.12.4"
+  "engines": {
+    "node": ">=18.0.0"
   },
-  "devDependencies": {
-    "standard-version": "^9.5.0"
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "ffmpeg-static": "5.3.0",
+    "figlet": "^1.9.3",
+    "inquirer": "^8.2.7",
+    "youtube-dl-exec": "^3.1.17"
   }
 }

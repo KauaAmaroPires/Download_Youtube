@@ -21,34 +21,34 @@
 
 # ✨ Home.
 
-* Have ```NodeJs``` on your machine, to run the project.
-
-* To download .MP3 music I need to install [ffmpeg](http://www.ffmpeg.org/). tutorial on how to install: [link](https://www.youtube.com/watch?v=Q267RF1I3GE)
+* Have Node.js 18 or newer on your machine.
+* FFmpeg is included with the package.
 
 # ❔ How to use?
 
-
-* The tool is simple to use. to get started just type ```ytdlpl```
+* The tool is simple to use. To get started, just type ```ytdlpl```.
 
 ![prompt](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/prompt.png)
 
-* right after paste the link of the video or youtube playlist you want to download and confirm.
+* Paste the link of the video or YouTube playlist and confirm.
 
 ![search](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/search.png)
 
-* Choose download format.
+* Choose the download format and quality.
 
 ![choices](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/choices.png)
 
-* right after the playlist scan will be started (if a playlist is detected)
+* The playlist scan will start if a playlist is detected.
 
 ![playlist](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/playlist.png)
 
-* when the scan is finished, the download process will start.
+* When the scan is finished, the download process will start.
+* Playlists download up to three items at once and show the current progress in the terminal.
+* Files already downloaded are identified as repeated instead of being reported as new downloads.
 
 ![download](https://raw.githubusercontent.com/KauaAmaroPires/Download_Youtube/refs/heads/master/assets/download.png)
 
-**NOTE: If you have any video with age restriction or region blocking, it will give an error and ignore this video and go on with life.**
+**NOTE: If a video is unavailable, age-restricted, private or region-blocked, it will be skipped and the playlist will continue.**
 
 # 🎶 Result!
 
